@@ -8,13 +8,7 @@ import { Car } from './interfaces/card.interface';
 
 @Injectable()
 export class CarsService {
-  cars: Car[] = [
-    {
-      id: 1,
-      model: 'Toyota',
-      brand: 'Corolla',
-    },
-  ];
+  cars: Car[] = [];
 
   get() {
     return this.cars;
@@ -30,7 +24,7 @@ export class CarsService {
 
   create(body: CreateCarDTO) {
     this.cars.push({
-      id: Math.floor(Math.random()*31)+1,
+      id: Math.floor(Math.random() * 31) + 1,
       ...body,
     });
 
@@ -63,5 +57,9 @@ export class CarsService {
     this.getById(id);
 
     this.cars = this.cars.filter((c) => c.id !== id);
+  }
+
+  fillCarsWithSeedData(cars: Car[]) {
+    this.cars = cars;
   }
 }
